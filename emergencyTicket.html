@@ -1,0 +1,200 @@
+<style>
+  html,
+  body,
+  .main-container {
+    height: 96.5% !important;
+    min-height: 96.5% !important;
+    margin: 0 auto;
+    padding: 4px;
+    width: 97%;
+  }
+
+  .header-style {
+    height: 11%;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .left-header {
+    width: 14%;
+    float: left;
+    margin-top: 5px;
+  }
+
+  .middle-header {
+    width: 68%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .right-header {
+    width: 16%;
+    float: left;
+  }
+
+  .address-style {
+    height: 7%;
+    width: 100%;
+    margin-bottom: 0px;
+  }
+
+  .address-left {
+    height: 100%;
+    width: 63%;
+    font-size: 14px;
+    float: left;
+  }
+
+  .address-right {
+    height: 100%;
+    width: 36%;
+    float: right;
+  }
+
+  .roomAssignment {
+    height: 2%;
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .body-style {
+    height: 82%;
+    width: 100%;
+    margin-bottom: 0px;
+    border: 1px solid black;
+  }
+
+  .left-body {
+    width: 35%;
+    height: 100%;
+    border-right: 1px solid black;
+    float: left;
+  }
+
+  .right-body {
+    width: 55%;
+    height: 100%;
+    float: left;
+  }
+
+  .footer {
+    height: 5%;
+    width: 100%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .label_tag {
+    font-size: 16px;
+  }
+
+  #barcode {
+    width: 4cm;
+    margin-top: 0px;
+    padding-left: 0px;
+    float: right;
+  }
+</style>
+<div class="main-container">
+  <div class="header-style">
+    <div class="left-header">
+      <img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/govtbd.png"
+           width="95%"
+           height="95%"/>
+    </div>
+    <div class="middle-header">
+      <label>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</label><br>
+      <label>উপজেলা স্বাস্থ্য কমপ্লেক্স, হরিরামপুর, মানিকগঞ্জ</label><br>
+      <span style="font-size:14px; font-weight:bold;">{{observations[1].complexData.data.name == 'Room No : 108 (Emergency)' ? 'জরুরী বিভাগ টিকিট' : 'বহিঃ বিভাগ টিকিট'}} </span><br/>
+      <!-- <span style="font-size:18px; font-weight:bold;">{{observations[1].complexData.data.name == 'Room No : 101 (Emergency)' ? 'জরুরী বিভাগ টিকিট' : 'জরুরী বিভাগ টিকিট'}} </span><br> -->
+
+      <!--  <label style="font-size: 13px; font-weight:bold;">{{ observations[0].value == 'Fee Category, Freedom fighter' || observations[0].value == 'Fee Category, Revisit Patient' || observations[0].value == 'Fee Category, Special' ? (observations[0].value).split(',')[1] : 'টিকিটের  মূল্য ৫/= (পাঁচ টাকা )'}}</label> -->
+      <!-- <label style="font-size: 14px;">টিকিটের  মূল্য ৩/= ( তিন টাকা )</label> -->
+      <!-- <span style="font-size:10px; text-align: center; font-weight:bold; border-style: outset;">১৫ আগস্ট ২০২১ জাতীয় শোক দিবস উপলক্ষে বিনা মূল্যে চিকিৎসা সেবা</span>-->
+    </div>
+    <div class="right-header">
+      <img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/logo.png"
+           width="125%"
+           height="110%"/>
+    </div>
+  </div>
+
+  <div class="address-style">
+    <div class="address-left">
+      <span class="label_tag"><b>Name: </b></span>
+      <span style="text-transform: capitalize;font-size: 16px;">{{patient.givenName + (patient.middleName ? (" " +
+                patient.middleName) : "") + (patient.familyName ? (" " + patient.familyName) : "")}}</span>
+      <span class="label_tag"><b> &nbsp; Age: </b></span>
+      <span
+          style="font-size: 16px;">{{patient.age.years != 0 ? patient.age.years + ' Y ': ''}}</span>
+      <span
+          style="font-size: 16px;">{{patient.age.months != 0 ? patient.age.months + ' M ': ''}}</span>
+      <span style="font-size: 16px;">{{patient.age.days != 0 ? patient.age.days + ' D ': ''}}</span><br>
+
+      <span class="label_tag"><b>Gender: </b></span>
+      <span style="font-size: 16px;">{{patient.gender}} </span>
+      <span class="label_tag"><b>&nbsp; Mobile No: </b></span>
+      <span style="font-size: 16px;">{{patient.phoneNumber}}</span><br>
+
+      <span class="label_tag"><b>Address: </b></span>
+      <span style="text-transform: capitalize;font-size: 16px;">
+        {{patient.address.address1 ? patient.address.address1 + "," : ""}}
+				{{patient.address.address2 ? patient.address.address2 + "," : ""}}
+				{{patient.address.address6 ? patient.address.address6 : ""}}
+				{{patient.address.address6 && patient.address.postalCode? "-" : ""}}
+				{{patient.address.postalCode ? patient.address.postalCode + "," : ","}}
+				{{patient.address.address3 ? patient.address.address3 + "," : ""}}
+				{{patient.address.address4 ? patient.address.address4 + "," : ""}}
+				{{patient.address.address5 ? patient.address.address5 + "," : ""}}
+				{{patient.address.countyDistrict ? patient.address.countyDistrict + "," : ""}}
+				{{patient.address.stateProvince}}
+      </span>
+
+    </div>
+    <div class="address-right" style="float: right; margin-right: 0px;">
+      <img id="barcode" jsbarcode-value="{{patient.primaryIdentifier.identifier}}"
+           jsbarcode-width="2"
+           jsbarcode-height="40" jsbarcode-margin="0" jsbarcode-displayValue="false"
+           jsbarcode-textAlign="left"
+           jsbarcode-textMargin="0" jsbarcode-fontSize="4"/>
+      <label class="label_tag" style="float:right; font-size: 16px"><b>Patient ID :</b>
+        {{patient.primaryIdentifier.identifier}}</label><br>
+      <label class="label_tag" style="float:right; font-size: 16px"><b>Date:
+      </b>{{observations[1].encounterDateTime | bahmniDateTime}}</label><br>
+
+    </div>
+  </div>
+  <div class="roomAssignment">
+    <span style="float:left; font-size: 16px; font-weight: bold;">{{observations[1].complexData.data.name}}</span>
+    <span style="float:right; font-size: 16px"><b>Patient Type: </b>{{ observations[0].value == 'Fee Category, General' || observations[0].value == 'Fee Category, Freedom fighter' || observations[0].value == 'Fee Category, Revisit Patient' || observations[0].value == 'Fee Category, Orphan' || observations[0].value == 'Fee Category, Vaccination' || observations[0].value == 'Fee Category, Ultra poor' || observations[0].value == 'Fee Category, Handicapped' || observations[0].value == 'Fee Category, Special' ? (observations[0].value).split(',')[1] : ''}}</span>
+  </div>
+
+  <div class="body-style">
+    <div class="left-body">
+      <p style="font-weight:bold; margin-left:10px; margin-top:10px;">C/C</p>
+      <!-- <p style="font-weight:bold; margin-left:10px; margin-top:130px;">O/E</p>
+      <p style="font-weight:bold; margin-left:10px; margin-top:140px;">INV</p>
+      <p style="font-weight:bold; margin-left:10px; margin-top:140px;">Dx</p> -->
+    </div>
+
+    <div class="right-body">
+      <p style="font-weight:bold; margin-left:10px; margin-top:5px;">Rx</p>
+    </div>
+  </div>
+  <div class="footer">
+    <label>পরবর্তী সাক্ষাৎ ..................................................দিন / সপ্তাহ / মাস পর।</label><br>
+    <label style="font-weight:bold;">বি.দ্র : পরবর্তী সাক্ষাতের সময় পরীক্ষা-নিরীক্ষার রিপোর্ট সহ টিকিট টি সঙ্গে নিয়ে আসবেন। </label>
+    <!-- <p style="font-size: 15px; float: left; margin-left: 10px;">Follow Up : ......... Days / Week / Month</p> -->
+  </div>
+</div>
+<script type="text/javascript" src="/bahmni_config/openmrs/apps/JsBarcode.all.min.js"></script>
+<script>
+  (function () {
+    JsBarcode("#barcode").init();
+  })();
+</script>

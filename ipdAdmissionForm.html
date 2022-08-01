@@ -1,0 +1,312 @@
+<style>
+	html,
+	body,
+	.main-container {
+		height: 96.5% !important;
+		min-height: 96.5% !important;
+		margin: 0 auto;
+		padding: 4px;
+		width: 97%;
+	}
+
+	.bdForm {
+		height: 2%;
+		width: 100%;
+		font-size: 10px;
+		margin-top: 2px;
+	}
+
+	.header-style {
+		height: 10%;
+		width: 100%;
+		margin-top: 0px;
+	}
+
+	.left-header {
+		width: 14%;
+		float: left;
+		margin-top: 5px;
+	}
+
+	.middle-header {
+		width: 68%;
+		height: 100%;
+		float: left;
+		text-align: center;
+		font-size: 18px;
+	}
+
+	.right-header {
+		width: 16%;
+		float: left;
+	}
+
+	.address-style {
+		height: 10%;
+		width: 100%;
+		margin-bottom: 0px;
+		margin-top: 5px;
+	}
+
+	.address-left {
+		height: 100%;
+		width: 66%;
+		font-size: 16px;
+		float: left;
+		line-height: 1.6;
+	}
+
+	.address-right {
+		height: 100%;
+		width: 34%;
+		float: right;
+	}
+
+	.body-style {
+		height: 87%;
+		width: 100%;
+		margin-bottom: 0px;
+		line-height: 1.8;
+	}
+
+	.patientStaticInfo {
+		width: 100%;
+	}
+
+	.signInfo {
+		width: 100%;
+		height: 10%;
+		margin-top: 2px;
+		display: flex;
+	}
+
+	.signInfoLeft {
+		width: 60%;
+		line-height: 1.5;
+		height: 100%;
+		float: left;
+	}
+
+	.signInfoRight {
+		width: 40%;
+		height: 100%;
+		float: right;
+		text-align: right;
+		padding-right: 50px;
+	}
+
+	table,
+	th,
+	td {
+		border: 1px solid black;
+	}
+
+	table {
+		border-collapse: collapse;
+	}
+
+
+	#barcode {
+		width: 4cm;
+		margin-top: 0px;
+		padding-left: 0px;
+		float: right;
+	}
+</style>
+<div class="main-container">
+	<div class="bdForm">
+		<span style="font-size:11px; float:left;">বাংলাদেশ ফরম নং - ৭৬৭</span>
+	</div>
+	<div class="header-style">
+		<div class="left-header">
+			<img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/govtbd.png" width="90%"
+				height="90%" />
+		</div>
+		<div class="middle-header">
+			<label style="font-size:18px;">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</label><br>
+			<label style="font-size:18px;">২৫০ শয্যা বিশিষ্ট জেনারেল হাসপাতাল, গোপালগঞ্জ</label><br>
+			<!--			<label style="font-size:16px; font-weight:bold;">{{observations[1].complexData.data.name == 'Room No : 103 (Emergency)' ? 'জরুরী বিভাগ টিকিট' : 'জরুরী বিভাগ'}} </label><br>-->
+			<!--			<label style="font-size:18px; line-height: 2;">রোগী ভর্তির ফরম ও রোগ বৃত্তান্ত </label>-->
+			<h1 style="font-size: 24px; font-weight: bold; text-align: center;position: relative;top:-8px;color:gray;">
+				রোগী ভর্তির ফরম ও রোগ বৃত্তান্ত</h1>
+			<!-- <label style="font-size: 14px;">টিকিটের  মূল্য ৩/= ( তিন টাকা )</label> -->
+			<!-- <span style="font-size:10px; text-align: center; font-weight:bold; border-style: outset;">১৫ আগস্ট ২০২১ জাতীয় শোক দিবস উপলক্ষে বিনা মূল্যে চিকিৎসা সেবা</span>-->
+		</div>
+		<div class="right-header">
+			<img src="/bahmni_config/openmrs/apps/registration/registrationCardLayout/images/logo.png" width="120%"
+				height="100%" />
+		</div>
+	</div>
+
+	<div class="address-style">
+		<div class="address-left">
+			<span class="label_tag" style="font-size: 13px;">নাম: </span>
+			<span style="text-transform: capitalize;">{{patient.givenName + (patient.middleName ? (" " +
+				patient.middleName) : "") + (patient.familyName ? (" " + patient.familyName) : "")}}</span>
+			<span class="label_tag" style="font-size: 12px;"> &nbsp; পিতা/স্বামীর নাম: </span>
+			<span>{{patient.primaryRelative}} </span><br>
+
+			<span class="label_tag" style="font-size: 13px;">লিঙ্গ: </span>
+			<span>{{patient.gender}}</span>
+			<span class="label_tag" style="font-size: 13px;">&nbsp;বয়স: </span>
+			<span>{{patient.age.years != 0 ? patient.age.years + ' Y ': ''}}</span>
+			<span>{{patient.age.months != 0 ? patient.age.months + ' M ': ''}}</span>
+			<span>{{patient.age.days != 0 ? patient.age.days + ' D ': ''}}</span>
+			<span class="label_tag" style="font-size: 13px;">&nbsp; মোবাইল নম্বর: </span>
+			<span>{{patient.phoneNumber}}</span> <span class="label_tag" style="font-size: 13px;">&nbsp; ধর্ম: </span>
+			<span>{{patient.religion.value.split(',')[1]}} </span>
+			<span
+				ng-if="!patient.religion.value">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br>
+
+
+		</div>
+		<div class="address-right">
+			<img id="barcode" jsbarcode-value="{{patient.primaryIdentifier.identifier}}" jsbarcode-width="2"
+				jsbarcode-height="40" jsbarcode-margin="0" jsbarcode-displayValue="false" jsbarcode-textAlign="left"
+				jsbarcode-textMargin="0" jsbarcode-fontSize="4" />
+			<span class="label_tag" style="float:right; font-size: 14px"><b>Patient ID :</b>
+				{{patient.primaryIdentifier.identifier}}</span><br>
+			<span class="label_tag" style="float:right; font-size: 15px"><b>Date:</b>
+				{{observations[1].encounterDateTime | bahmniDateTime}}</span>
+
+		</div>
+	</div>
+	<!-- <div class="roomAssignment">
+      <span>{{observations[1].complexData.data.name}}</span>
+  </div> -->
+	<div style="position:relative; top:-50px;" class="body-style">
+		<div class="patientStaticInfo">
+			<span class="label_tag" style="font-size: 13px;">জাতীয় পরিচয়পত্র নং: </span>
+			<span>{{patient.nationalId}} </span>
+			<span
+				ng-if="!patient.nationalId">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<span class="label_tag" style="font-size: 13px;">&nbsp;&nbsp;&nbsp;&nbsp;পেশা: </span>
+			<span>{{patient.occupation.value.split(',')[1]}} </span>
+			<span
+				ng-if="!patient.occupation.value">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<br>
+			<span class="label_tag" style="font-size: 13px;">ঠিকানা: </span>
+			<span style="text-transform: capitalize;">
+				{{patient.address.address1 ? patient.address.address1 + "," : ""}}
+				{{patient.address.address2 ? patient.address.address2 + "," : ""}}
+				{{patient.address.address6 ? patient.address.address6 : ""}}
+				{{patient.address.address6 && patient.address.postalCode? "-" : ""}}
+				{{patient.address.postalCode ? patient.address.postalCode + "," : ","}}
+				{{patient.address.address3 ? patient.address.address3 + "," : ""}}
+				{{patient.address.address4 ? patient.address.address4 + "," : ""}}
+				{{patient.address.address5 ? patient.address.address5 + "," : ""}}
+
+				{{patient.address.countyDistrict ? patient.address.countyDistrict + "," : ""}}
+				{{patient.address.stateProvince}}
+			</span><br>
+			<span style="font-size: 13px;">নিকট/ স্থানীয় আত্মীয়ের নাম: </span>
+			<span
+				ng-if="!patient.primaryRelativeTwo">....................................................................................................................................</span>
+			<span>{{patient.primaryRelativeTwo}}</span><br>
+			<span style="font-size: 13px;">আত্মীয়ের ঠিকানা: </span>
+			<span
+				ng-if="!patient.primaryRelativeTwoAddress">..................................................................................................................................................</span>
+			<span>{{patient.primaryRelativeTwoAddress}}</span><br>
+			<span style="font-size: 13px;">ভর্তির তারিখ: </span>
+			<span><span id="myDate"></span></span> &nbsp;
+			<span style="font-size: 13px;">সময়: </span>
+			<span><span id="myTime"></span></span>&nbsp;&nbsp;
+			<span style="font-size: 13px;">ছাড়িয়ে দেওয়ার তারিখ: </span>
+			<span>...................................</span>
+			<span style="font-size: 13px;">সময়: </span>
+			<span>...........................</span><br>
+			<span>.......................................................................</span>
+			<span style="font-size: 13px;">বিভাগে</span>
+			<span>...................................................</span>
+			<span style="font-size: 13px;"> ওয়ার্ডে ভাড়ায় / বিনা ভাড়ায়</span><br>
+			<span>......................................................................................</span><span
+				style="font-size: 12px;"> এর অধীনে ভর্তি করা হইলো।</span>
+
+		</div>
+		<div class="signInfo">
+			<div class="signInfoLeft">
+				<span style="font-size: 13px;"><u>কেবিন/ শয্যা নম্বর</u> : </span><br>
+				<span
+					style="font-size: 17px; font-weight: bold;">{{observations.dispositionNote.display.split(':')[1]}}</span>
+
+			</div>
+			<div class="signInfoRight">
+				<span style="font-size: 13px;">স্বাক্ষর : </span>
+				<span>............................................</span><br>
+				<span style="font-size: 13px;">নাম : </span>
+				<span>...............................................</span><br>
+				<span style="font-size: 13px;">পদবী : </span>
+				<span>.............................................</span><br>
+			</div>
+		</div>
+		<div style="border-bottom: 1px solid black;"><span style="font-size: 15px;">গ্রহণকারী :
+				<span>......................................</span></span></div>
+		<div class="DiagnosisHistory" style=" border-right: 1px solid black;width:37%;height: 600px; ">
+			<span style="font-size: 13px; font-weight:bold;">রোগের বিবরণ: </span>
+			<div style="position: relative;top:260px;">
+				<span style="font-size: 13px; font-weight:bold;">সম্ভাব্য রোগ নির্ণয়(PD): </span>
+			</div>
+			<div style="position: relative;top:370px;">
+				<span style="font-size: 13px; font-weight:bold;">অঙ্গীকার: </span>
+
+				<p style="font-size: 13px; text-align: justify;width: 95%;margin-top: -6px;">আমি আমার এই রোগের চিকিৎসার
+					ভার হাসপাতাল কর্তৃপক্ষের নিকট অর্পণ করিলাম । পরবর্তী কোন জটিলতার জন্য হাসপাতাল কর্তৃপক্ষ দায়ী থকিবেন
+					না।</p>
+
+				<span style="font-size: 13px;">স্বাক্ষর : </span>
+				<span>............................................</span><br>
+
+			</div>
+
+		</div>
+
+	</div>
+	<!--    <div >-->
+	<!--        <table style="width:100%">-->
+	<!--            <tr >-->
+	<!--                <th style="padding: 10px;">তারিখ</th>-->
+	<!--                <th style="padding: 10px;">রোগের প্রাত্যহিক  বিবরন</th>-->
+	<!--                <th style="padding: 10px;">উপদেশ/ব্যবস্থাপত্র</th>-->
+	<!--                <th style="padding: 10px;">পথ্য </th>-->
+	<!--            </tr>-->
+	<!--            <tr style="height:982px">-->
+	<!--                <td></td>-->
+	<!--                <td></td>-->
+	<!--                <td></td>-->
+	<!--                <td></td>-->
+	<!--            </tr>-->
+	<!--        </table>-->
+	<!--        <br>-->
+	<!--        <div style="text-align:center">-->
+	<!--            <span><b>Email:</b> harirampur@uhfpo.dghs.gov.bd</span>-->
+	<!--            &nbsp;&nbsp;&nbsp;-->
+	<!--            <span><b>Contact No:</b> +8801730324510</span>-->
+	<!--        </div>-->
+	<!--        <br>-->
+
+	<!--    </div>-->
+</div>
+<script type="text/javascript" src="/bahmni_config/openmrs/apps/JsBarcode.all.min.js"></script>
+<script>
+	(function () {
+		JsBarcode("#barcode").init();
+	})();
+	var d = new Date;
+	var date = d.toString();
+	var dateSplit = date.split(" ")
+	var dateFilter = `${dateSplit[2]} ${dateSplit[1]} ${dateSplit[3]}`;
+	var timeFilter = `${dateSplit[4]}`;
+	var hours = timeFilter?.split(':')[0];
+	var minutes = timeFilter?.split(':')[1];
+	var ampm = hours >= 12 ? 'pm' : 'am';
+	hours %= 12;
+	hours = hours || 12;
+	minutes = minutes < 10 ? `${minutes}` : minutes;
+	var updateTime = `${hours}:${minutes} ${ampm}`;
+	spanDate = document.getElementById('myDate');
+	date = document.createTextNode(dateFilter);
+	spanDate.innerText = date.textContent;
+	spanTime = document.getElementById('myTime');
+	time = document.createTextNode(updateTime);
+	spanTime.innerText = time.textContent;
+</script>
